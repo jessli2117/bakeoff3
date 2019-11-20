@@ -75,9 +75,9 @@ void draw()
 
     //draw very basic next button
     fill(255, 0, 0);
-    rect(600, 600, 200, 200); //draw next button
+    rect(width*3/4, height/2, width/4, height/2); //draw next button
     fill(255);
-    text("NEXT > ", 650, 650); //draw next label
+    text("NEXT > ", width*3/4 + 50, height/2 + 50); //draw next label
 
     //my draw code
     fill(255, 0, 0); //red button
@@ -124,7 +124,7 @@ void mousePressed()
   }
 
   //You are allowed to have a next button outside the 1" area
-  if (didMouseClick(600, 600, 200, 200)) //check if click is in next button
+  if (didMouseClick(width*3/4, height/2, width/4, height/2)) //check if click is in next button
   {
     nextTrial(); //if so, advance to next trial
   }
