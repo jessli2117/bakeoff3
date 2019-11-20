@@ -1,6 +1,28 @@
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
+package processing.test.textentryscaffold;
+
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.Arrays; 
+import java.util.Collections; 
+import java.util.Random; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class TextEntryScaffold extends PApplet {
+
+
+
+
 
 String[] phrases; //contains all of the phrases
 int totalTrialNum = 2; //the total number of phrases to be tested - set this low for testing. Might be ~10 for the real bakeoff!
@@ -22,7 +44,7 @@ PImage watch;
 char currentLetter = 'a';
 
 //You can modify anything in here. This is just a basic implementation.
-void setup()
+public void setup()
 {
   watch = loadImage("watchhand3smaller.png");
   phrases = loadStrings("phrases2.txt"); //load the phrase set into memory
@@ -30,13 +52,13 @@ void setup()
   //Collections.shuffle(Arrays.asList(phrases), new Random(100)); //randomize the order of the phrases with seed 100; same order every time, useful for testing
  
   orientation(LANDSCAPE); //can also be PORTRAIT - sets orientation on android device
-  size(800, 800); //Sets the size of the app. You should modify this to your device's native size. Many phones today are 1080 wide by 1920 tall.
+   //Sets the size of the app. You should modify this to your device's native size. Many phones today are 1080 wide by 1920 tall.
   textFont(createFont("Arial", 24)); //set the font to arial 24. Creating fonts is expensive, so make difference sizes once in setup, not draw
   noStroke(); //my code doesn't use any strokes
 }
 
 //You can modify anything in here. This is just a basic implementation.
-void draw()
+public void draw()
 {
   background(255); //clear background
   drawWatch(); //draw watch background
@@ -91,13 +113,13 @@ void draw()
 }
 
 //my terrible implementation you can entirely replace
-boolean didMouseClick(float x, float y, float w, float h) //simple function to do hit testing
+public boolean didMouseClick(float x, float y, float w, float h) //simple function to do hit testing
 {
   return (mouseX > x && mouseX<x+w && mouseY>y && mouseY<y+h); //check to see if it is in button bounds
 }
 
 //my terrible implementation you can entirely replace
-void mousePressed()
+public void mousePressed()
 {
   if (didMouseClick(width/2-sizeOfInputArea/2, height/2-sizeOfInputArea/2+sizeOfInputArea/2, sizeOfInputArea/2, sizeOfInputArea/2)) //check if click in left button
   {
@@ -131,7 +153,7 @@ void mousePressed()
 }
 
 
-void nextTrial()
+public void nextTrial()
 {
   if (currTrialNum >= totalTrialNum) //check to see if experiment is done
     return; //if so, just return
@@ -165,7 +187,7 @@ void nextTrial()
     System.out.println("Total errors entered: " + errorsTotal); //output
 
     float wpm = (lettersEnteredTotal/5.0f)/((finishTime - startTime)/60000f); //FYI - 60K is number of milliseconds in minute
-    float freebieErrors = lettersExpectedTotal*.05; //no penalty if errors are under 5% of chars
+    float freebieErrors = lettersExpectedTotal*.05f; //no penalty if errors are under 5% of chars
     float penalty = max(errorsTotal-freebieErrors, 0) * .5f;
     
     System.out.println("Raw WPM: " + wpm); //output
@@ -193,9 +215,9 @@ void nextTrial()
 }
 
 
-void drawWatch()
+public void drawWatch()
 {
-  float watchscale = DPIofYourDeviceScreen/138.0;
+  float watchscale = DPIofYourDeviceScreen/138.0f;
   pushMatrix();
   translate(width/2, height/2);
   scale(watchscale);
@@ -209,7 +231,7 @@ void drawWatch()
 
 
 //=========SHOULD NOT NEED TO TOUCH THIS METHOD AT ALL!==============
-int computeLevenshteinDistance(String phrase1, String phrase2) //this computers error between two strings
+public int computeLevenshteinDistance(String phrase1, String phrase2) //this computers error between two strings
 {
   int[][] distance = new int[phrase1.length() + 1][phrase2.length() + 1];
 
@@ -223,4 +245,6 @@ int computeLevenshteinDistance(String phrase1, String phrase2) //this computers 
       distance[i][j] = min(min(distance[i - 1][j] + 1, distance[i][j - 1] + 1), distance[i - 1][j - 1] + ((phrase1.charAt(i - 1) == phrase2.charAt(j - 1)) ? 0 : 1));
 
   return distance[phrase1.length()][phrase2.length()];
+}
+  public void settings() {  size(800, 800); }
 }
