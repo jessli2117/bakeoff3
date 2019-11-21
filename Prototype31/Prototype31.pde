@@ -122,26 +122,26 @@ void draw()
     fill(100); //lower right
     stroke(0);
     strokeWeight(2);
-    rect(width/2-sizeOfInputArea/2,height/2+sizeOfInputArea/2-50, 50,50);
+    rect(width/2-sizeOfInputArea/2,height/2+sizeOfInputArea/2-60, 50,60);
     
     //space
     fill(100); //lower right
     stroke(0);
     strokeWeight(2);
-    rect(width/2-sizeOfInputArea/2+sizeOfInputArea/2+50,height/2+sizeOfInputArea/2-50, 50,50);
+    rect(width/2-sizeOfInputArea/2+sizeOfInputArea/2+50,height/2+sizeOfInputArea/2-60, 50,60);
         
     
 
     //letters
     String curr = sets[currentSet];
     fill(255);
-    text("" + curr.substring(0,1), width/2-sizeOfInputArea/2+60, height/2-sizeOfInputArea/2+60); //draw current letter 1
+    text("" + curr.substring(0,1), width/2-sizeOfInputArea/2+60, height/2-sizeOfInputArea/2+70); //draw current letter 1
     fill(255);
-    text("" + curr.substring(1,2), width/2-sizeOfInputArea/2+sizeOfInputArea/2+40, height/2-sizeOfInputArea/2+60); //draw current letter 2
+    text("" + curr.substring(1,2), width/2-sizeOfInputArea/2+sizeOfInputArea/2+35, height/2-sizeOfInputArea/2+70); //draw current letter 2
     fill(255);
-    text("" + curr.substring(2,3), width/2-sizeOfInputArea/2+60, height/2-sizeOfInputArea/2+sizeOfInputArea/2+40); //draw current letter 3
+    text("" + curr.substring(2,3), width/2-sizeOfInputArea/2+60, height/2-sizeOfInputArea/2+sizeOfInputArea/2+35); //draw current letter 3
     fill(255);
-    text("" + curr.substring(3), width/2-sizeOfInputArea/2+sizeOfInputArea/2+40, height/2-sizeOfInputArea/2+sizeOfInputArea/2+40); //draw current letter 4
+    text("" + curr.substring(3), width/2-sizeOfInputArea/2+sizeOfInputArea/2+35, height/2-sizeOfInputArea/2+sizeOfInputArea/2+35); //draw current letter 4
     
     //next and previous set
     //next set - 1
@@ -191,7 +191,7 @@ void mousePressed()
   } else if (didMouseClick(width/2-sizeOfInputArea/2+sizeOfInputArea/2+50,height/2-sizeOfInputArea/2, 50,50)){
     currentTyped += " ";
 
-  } else if (didMouseClick(width/2-sizeOfInputArea/2,height/2+sizeOfInputArea/2-50, 50,50)) {
+  } else if (didMouseClick(width/2-sizeOfInputArea/2,height/2+sizeOfInputArea/2-60, 50,60)) {
     currentSet--;
     if (currentSet < 0){
       currentSet = sets.length-1;
@@ -199,7 +199,7 @@ void mousePressed()
     
 
     
-  } else if (didMouseClick(width/2-sizeOfInputArea/2+sizeOfInputArea/2+50,height/2+sizeOfInputArea/2-50, 50,50)){
+  } else if (didMouseClick(width/2-sizeOfInputArea/2+sizeOfInputArea/2+50,height/2+sizeOfInputArea/2-60, 50,60)){
 
     currentSet++;
     if (currentSet >= sets.length){
